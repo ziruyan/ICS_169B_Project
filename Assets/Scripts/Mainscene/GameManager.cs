@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -77,6 +78,8 @@ public class GameManager : MonoBehaviour
 
 	public GameObject turnNum;
 	public int turnCount;
+
+    public GameObject popUpBox;
 
     void Awake()
     {
@@ -423,14 +426,33 @@ public class GameManager : MonoBehaviour
 		turnCount += 1;
 
 		ShowWhoTurn();
+        TriggerEvent();
     }
 
-	public void ShowWhoTurn()
+    // 随机触发一个random的event
+    public void TriggerEvent()
+    {
+        if (popUpBox.activeSelf == true)
+        {
+            popUpBox.SetActive(false);
+        }
+        else
+        {
+            popUpBox.SetActive(true);
+        }
+    }
+
+    public void EventContinue()
+    {
+        popUpBox.SetActive(false);
+    }
+
+    public void ShowWhoTurn()
 	{
 		string current_turn = currentPlayer.name;
 		string newString = current_turn + " Turn";
 
-		whoTurnIndicator.GetComponent<Text>().text = newString;
+		whoTurnIndicator.GetComponent<TextMeshProUGUI>().text = newString;
 	}
 
 	//原Geonmetry Functions

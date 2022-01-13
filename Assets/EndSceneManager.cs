@@ -18,7 +18,7 @@ public class EndSceneManager : MonoBehaviour
 
 	public void GoToStartScene()
 	{
-		SceneManager.LoadScene(start_scene_name, LoadSceneMode.Single);
+		SceneManager.LoadScene("Main");
 	}
 
 	public void ExitGame()
