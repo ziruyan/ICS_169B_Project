@@ -43,6 +43,8 @@ public class GameManager : MonoBehaviour
     public Player currentPlayer;
     public Player otherPlayer;
 
+    public EnemyAI ai;
+
 	// 程序的棋盘是定死在x:0-7, y:0-7范围内的，之后可能要统一更改一下
 
 	public int board_num = 8;
@@ -100,6 +102,8 @@ public class GameManager : MonoBehaviour
 
         currentPlayer = white;
         otherPlayer = black;
+
+        ai = new EnemyAI();
 
 		//
 		source = GetComponent<AudioSource>();
@@ -427,7 +431,41 @@ public class GameManager : MonoBehaviour
 
 		ShowWhoTurn();
         TriggerEvent();
+
+        if (currentPlayer.name == "Blue")
+        {
+            AiTurn();
+        }
     }
+
+    public void AiTurn()
+    {
+        // 获取所有可以走的格子
+        ai.input_board(pieces);
+        ai.input_enemy(currentPlayer);
+        // 获取整个盘面的情况
+        GameObject move_piece = ai.get_move_piece(instance);
+        Vector2Int move_place = ai.get_move_place(instance);
+        // 按照某则规则行动（最开始随机移动）
+        AiMove(move_piece, move_place);
+        // 结束回合
+
+    }
+
+    public void AiMove(GameObject movingPiece, Vector2Int gridPoint)
+    {
+        if (PieceAtGrid(gridPoint) == null)
+            {
+                Move(movingPiece, gridPoint);
+                NextPlayer();
+            }
+            else
+            {
+                CapturePieceAt(movingPiece,gridPoint);
+                NextPlayer();
+            }
+    }
+
 
     // 随机触发一个random的event
     public void TriggerEvent()
