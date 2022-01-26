@@ -14,6 +14,7 @@ public class Board : MonoBehaviour
 	public GameObject help_image;
 	public GameObject help_title;
 	public GameObject help_content;
+	public GameObject settings_image;
 
 	void Start()
 	{
@@ -81,5 +82,22 @@ public class Board : MonoBehaviour
 		{
 			help_image.SetActive(false);
 		}
+	}
+
+	public void ShowSettings()
+    {
+		if (settings_image.activeSelf == false)
+		{
+			settings_image.SetActive(true);
+		}
+		else
+		{
+			settings_image.SetActive(false);
+		}
+	}
+
+	public void CloseSettings()
+	{
+		settings_image.SetActive(false);
 	}
 }

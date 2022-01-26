@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class MainManager : MonoBehaviour
 {
+
+    public GameObject settings_image;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,5 +30,21 @@ public class MainManager : MonoBehaviour
         Application.Quit();
     }
 
+    	public void ShowSettings()
+    {
+		if (settings_image.activeSelf == false)
+		{
+			settings_image.SetActive(true);
+		}
+		else
+		{
+			settings_image.SetActive(false);
+		}
+	}
+
+	public void CloseSettings()
+	{
+		settings_image.SetActive(false);
+	}
 	
 }

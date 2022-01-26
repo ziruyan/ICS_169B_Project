@@ -110,7 +110,8 @@ public class GameManager : MonoBehaviour
 		source.clip = bgm1;
 		source.loop=true;
 		source.playOnAwake=true;
-		source.Play();
+
+		//source.Play();
 
 		// 创建所有的棋子
         InitialSetup();
@@ -215,7 +216,7 @@ public class GameManager : MonoBehaviour
 		// 把移动显示在棋盘上
         board.MovePiece(piece, gridPoint);
 
-		source.PlayOneShot(move_sound_effect,0.7F);
+		source.PlayOneShot(move_sound_effect,0.2F);
     }
 
 	// 更新Pawn的第一次Move
