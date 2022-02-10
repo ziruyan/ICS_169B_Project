@@ -29,17 +29,17 @@ public class EnemyAI : MonoBehaviour
     {
         bool check = true;
         int i = 0;
+
         while (check)
         {
-            if (i == currentPlayer.pieces.Count)
-            {
-                check = false;
-            }
-            List<Vector2Int> loc = instance.MovesForPiece(currentPlayer.pieces[i]);
+            int len1 = currentPlayer.pieces.Count;
+            int target1 = Random.Range(0, len1);
+
+            List<Vector2Int> loc = instance.MovesForPiece(currentPlayer.pieces[target1]);
             if (loc.Count > 0)
             {
                 check = false;
-                current_p = currentPlayer.pieces[i];
+                current_p = currentPlayer.pieces[target1];
             }
         }
 
@@ -49,6 +49,8 @@ public class EnemyAI : MonoBehaviour
     public Vector2Int get_move_place(GameManager instance)
     {
         List<Vector2Int> loc = instance.MovesForPiece(current_p);
-        return loc[0];
+        int len1 = loc.Count;
+        int target1 = Random.Range(0, len1);
+        return loc[target1];
     }
 }
