@@ -40,7 +40,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 261dda37a44714f4ea6908e0e0f1e9b4, type: 3}
+        m_Texture: {fileID: 2800000, guid: 192d02e40564db14cadb98e0a30b9dc5, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:

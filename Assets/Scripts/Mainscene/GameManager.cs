@@ -133,30 +133,47 @@ public class GameManager : MonoBehaviour
     private void InitialSetup()
     {
 
-        AddPiece(whiteBishop, white, 1*2, 0);
-        AddPiece(whiteBishop, white, 2*2, 0);
-        //AddPiece(whiteQueen, white, 3*2, 0);
-        AddPiece(whiteKing, white, 7, 0);
-        AddPiece(whiteBishop, white, 5*2, 0);
-        AddPiece(whiteBishop, white, 6*2, 0);
+        AddPiece(whiteBishop, white, 4, 7);
+        AddPiece(whiteBishop, white, 5, 7);
+        AddPiece(whiteBishop, white, 6, 7);
+        AddPiece(whiteBishop, white, 6, 6);
+        AddPiece(whiteBishop, white, 6, 5);
 
-        for (int i = 0; i < 8; i++)
+
+        AddPiece(whiteQueen, white, 8,12 );
+        AddPiece(whiteKing, white, 5, 5);
+
+        for (int i = 7; i < 11; i++)
         {
-            AddPiece(whitePawn, white, i*2, 2);
+            AddPiece(whitePawn, white, i, 14);
         }
 
-        //AddPiece(blackRook, black, 0*2, 12);
-        AddPiece(blackBishop, black, 1*2, 12);
-        AddPiece(blackBishop, black, 2*2, 12);
-        //AddPiece(blackQueen, black, 3*2, 12);
-        AddPiece(blackKing, black, 7, 12);
-        AddPiece(blackBishop, black, 5*2, 12);
-        AddPiece(blackBishop, black, 6*2, 12);
-
-        for (int i = 0; i < 8; i++)
+        for (int i = 3; i < 6; i++)
         {
-            AddPiece(blackPawn, black, i*2, 10);
+            AddPiece(whitePawn, white, 10, i);
         }
+
+
+        AddPiece(blackKing, black, 18, 18);
+        AddPiece(blackBishop, black, 16, 18);
+        AddPiece(blackBishop, black, 16, 17);
+
+        AddPiece(blackQueen, black, 17, 4);
+        AddPiece(blackPawn, black, 15, 2);
+        AddPiece(blackPawn, black, 15, 3);
+        AddPiece(blackPawn, black, 15, 4);
+
+        AddPiece(blackQueen, black, 8, 18);
+        AddPiece(blackBishop, black, 7, 17);
+        AddPiece(blackBishop, black, 9, 17);
+        AddPiece(blackPawn, black, 7, 16);
+        AddPiece(blackPawn, black, 8, 16);
+        AddPiece(blackPawn, black, 9, 16);
+
+
+
+
+
     }
 
 	// 加入棋子时，会需要initial 位置、模型、和所属玩家
