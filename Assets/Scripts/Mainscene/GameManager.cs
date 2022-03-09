@@ -1,8 +1,11 @@
 ﻿using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
+
+using Random = System.Random;
 
 public class GameManager : MonoBehaviour
 {
@@ -13,31 +16,31 @@ public class GameManager : MonoBehaviour
     public Board board;
 
 	// 棋子模型
-    public GameObject whiteKing;
-    public GameObject whiteQueen;
-    public GameObject whiteBishop;
-    public GameObject whiteKnight;
-    public GameObject whiteRook;
-    public GameObject whitePawn;
+    public GameObject redAdmiral;
+    public GameObject redMajor;
+    public GameObject redPikeman;
+    public GameObject redKnight;
+    public GameObject redRook;
+    public GameObject redInfantry;
 
-    public GameObject blackKing;
-    public GameObject blackQueen;
-    public GameObject blackBishop;
-    public GameObject blackKnight;
-    public GameObject blackRook;
-    public GameObject blackPawn;
+    public GameObject blueAdmiral;
+    public GameObject blueMajor;
+    public GameObject bluePikeman;
+    public GameObject blueKnight;
+    public GameObject blueRook;
+    public GameObject blueInfantry;
     
     public GameObject CombatCube;
 
 	// 棋子的位置列表，标记棋盘上哪里有棋子
     private GameObject[,] pieces;
 
-	// 移动过第一次的Pawn
-    private List<GameObject> movedPawns;
+	// 移动过第一次的Infantry
+    private List<GameObject> movedInfantrys;
 
 	// 最开始分配的两个玩家
-    private Player white;
-    private Player black;
+    private Player red;
+    private Player blue;
 
 	// 当前轮换的两个玩家
     public Player currentPlayer;
@@ -82,6 +85,9 @@ public class GameManager : MonoBehaviour
 	public int turnCount;
 
     public GameObject popUpBox;
+    Scene current_scene;
+    string current_scene_name;
+
 
     void Awake()
     {
@@ -93,15 +99,15 @@ public class GameManager : MonoBehaviour
 		// 这个实际上是整个棋盘的位置，用来记录棋盘上哪里有棋子
         pieces = new GameObject[board_num, board_num];
 
-		// 记录哪些Pawn已经移动过了
-        movedPawns = new List<GameObject>();
+        // 记录哪些Infantry已经移动过了
+        movedInfantrys = new List<GameObject>();
 
 		// 创建两个Player，之后用于轮换Turn Base
-        white = new Player("Red", true);
-        black = new Player("Blue", false);
+        red = new Player("Red", true);
+        blue = new Player("Blue", false);
 
-        currentPlayer = white;
-        otherPlayer = black;
+        currentPlayer = red;
+        otherPlayer = blue;
 
         ai = new EnemyAI();
 
@@ -127,48 +133,52 @@ public class GameManager : MonoBehaviour
 		turnCount = 1;
 
 		ShowWhoTurn();
+
+        // Check the scene the game is currently in
+        current_scene = SceneManager.GetActiveScene();
+        current_scene_name = current_scene.name;
     }
 
 	//创建所有棋子，绑定玩家，设置初始位置，调用模型
     private void InitialSetup()
     {
 
-        AddPiece(whiteBishop, white, 4, 7);
-        AddPiece(whiteBishop, white, 5, 7);
-        AddPiece(whiteBishop, white, 6, 7);
-        AddPiece(whiteBishop, white, 6, 6);
-        AddPiece(whiteBishop, white, 6, 5);
+        AddPiece(redPikeman, red, 4, 7);
+        AddPiece(redPikeman, red, 5, 7);
+        AddPiece(redPikeman, red, 6, 7);
+        AddPiece(redPikeman, red, 6, 6);
+        AddPiece(redPikeman, red, 6, 5);
 
 
-        AddPiece(whiteQueen, white, 8,12 );
-        AddPiece(whiteKing, white, 5, 5);
+        AddPiece(redMajor, red, 8,12 );
+        AddPiece(redAdmiral, red, 5, 5);
 
         for (int i = 7; i < 11; i++)
         {
-            AddPiece(whitePawn, white, i, 14);
+            AddPiece(redInfantry, red, i, 14);
         }
 
         for (int i = 3; i < 6; i++)
         {
-            AddPiece(whitePawn, white, 10, i);
+            AddPiece(redInfantry, red, 10, i);
         }
 
 
-        AddPiece(blackKing, black, 18, 18);
-        AddPiece(blackBishop, black, 16, 18);
-        AddPiece(blackBishop, black, 16, 17);
+        AddPiece(blueAdmiral, blue, 18, 18);
+        AddPiece(bluePikeman, blue, 16, 18);
+        AddPiece(bluePikeman, blue, 16, 17);
 
-        AddPiece(blackQueen, black, 17, 4);
-        AddPiece(blackPawn, black, 15, 2);
-        AddPiece(blackPawn, black, 15, 3);
-        AddPiece(blackPawn, black, 15, 4);
+        AddPiece(blueMajor, blue, 17, 4);
+        AddPiece(blueInfantry, blue, 15, 2);
+        AddPiece(blueInfantry, blue, 15, 3);
+        AddPiece(blueInfantry, blue, 15, 4);
 
-        AddPiece(blackQueen, black, 8, 18);
-        AddPiece(blackBishop, black, 7, 17);
-        AddPiece(blackBishop, black, 9, 17);
-        AddPiece(blackPawn, black, 7, 16);
-        AddPiece(blackPawn, black, 8, 16);
-        AddPiece(blackPawn, black, 9, 16);
+        AddPiece(blueMajor, blue, 8, 18);
+        AddPiece(bluePikeman, blue, 7, 17);
+        AddPiece(bluePikeman, blue, 9, 17);
+        AddPiece(blueInfantry, blue, 7, 16);
+        AddPiece(blueInfantry, blue, 8, 16);
+        AddPiece(blueInfantry, blue, 9, 16);
 
 
 
@@ -219,10 +229,10 @@ public class GameManager : MonoBehaviour
     public void Move(GameObject piece, Vector2Int gridPoint)
     {
         Piece pieceComponent = piece.GetComponent<Piece>();
-		// Pawn只有第一次可以走两格
-        if (pieceComponent.type == PieceType.Pawn && !HasPawnMoved(piece))
+        // Infantry只有第一次可以走两格
+        if (pieceComponent.type == PieceType.Infantry && !HasInfantryMoved(piece))
         {
-            movedPawns.Add(piece);
+            movedInfantrys.Add(piece);
         }
 
 		// 把原位置的Piece移除，然后在新的位置标记一个Piece
@@ -236,16 +246,16 @@ public class GameManager : MonoBehaviour
 		source.PlayOneShot(move_sound_effect,0.2F);
     }
 
-	// 更新Pawn的第一次Move
-    public void PawnMoved(GameObject pawn)
+    // 更新Infantry的第一次Move
+    public void InfantryMoved(GameObject Infantry)
     {
-        movedPawns.Add(pawn);
+        movedInfantrys.Add(Infantry);
     }
 
-	// 返回Pawn的第一次Move与否
-    public bool HasPawnMoved(GameObject pawn)
+    // 返回Infantry的第一次Move与否
+    public bool HasInfantryMoved(GameObject Infantry)
     {
-        return movedPawns.Contains(pawn);
+        return movedInfantrys.Contains(Infantry);
     }
 
 
@@ -260,21 +270,19 @@ public class GameManager : MonoBehaviour
 		Piece movingPieceComponent = movingPiece.GetComponent<Piece>();
 
 
-
-
         //战斗，进行掉血
 		movingPieceComponent.attack_piece(pieceToCaptureComponent);
 		//.attack_piece(pieceToCapture);
 		// 进行血量检测
 		if (pieceToCaptureComponent.health == 0)
 		{
-			// 失败判定,如果King被吃就结束了
-			if (pieceToCapture.GetComponent<Piece>().type == PieceType.King)
+            // 失败判定,如果Admiral被吃就结束了
+            if (pieceToCapture.GetComponent<Piece>().type == PieceType.Admiral)
 			{
 				GoToEndScene();
 			}
-			// 如果不是King，就摧毁对方的棋子，并更新在Board上
-			currentPlayer.capturedPieces.Add(pieceToCapture);
+            // 如果不是Admiral，就摧毁对方的棋子，并更新在Board上
+            currentPlayer.capturedPieces.Add(pieceToCapture);
 			pieces[gridPoint.x, gridPoint.y] = null;
 			Destroy(pieceToCapture);
 			return 1;
@@ -302,12 +310,17 @@ public class GameManager : MonoBehaviour
 	public int ShowCombatPanel()
 	{
 		CombatPanel.SetActive(true);
+        unit_title_UI.SetActive(false);
+        unit_info_UI.SetActive(false);
+        unit_image_UI.SetActive(false);
+        whoTurnIndicator.SetActive(false);
 
-		Piece pyc = p_y.GetComponent<Piece>();
+
+        Piece pyc = p_y.GetComponent<Piece>();
 		Piece pec = p_e.GetComponent<Piece>();
 
-		string yourString = "Your unit is " + pyc.type;
-		string enemyString = "Enemy unit is " + pec.type;
+		string yourString = "Your unit is: " + pyc.type + "\n" + "Attack: " + pyc.attack + "\n" + "Armor: " + pyc.defense + "\n" + "HP: " + pyc.health;
+		string enemyString = "Enemy unit is " + pec.type + "\n" + "Attack: " + pec.attack + "\n" + "Armor: " + pec.defense + "\n" + "HP: " + pec.health;
 
 		Panel_Your.GetComponent<Text>().text = yourString;
 		Panel_Enemy.GetComponent<Text>().text = enemyString;
@@ -330,8 +343,8 @@ public class GameManager : MonoBehaviour
 		{
 			socreBoard.SetActive(true);
 
-			string your_p = "For Red:\n" + white.PieceToString();
-			string enemy_p = "For Blue:\n" + black.PieceToString();
+			string your_p = "For Red:\n" + red.PieceToString();
+			string enemy_p = "For Blue:\n" + blue.PieceToString();
 
 			socreBoard_Your.GetComponent<Text>().text = your_p;
 			socreBoard_Enemy.GetComponent<Text>().text = enemy_p;
@@ -445,12 +458,21 @@ public class GameManager : MonoBehaviour
         currentPlayer = otherPlayer;
         otherPlayer = tempPlayer;
 
-		turnCount += 1;
+        // generate a random number/event
+        Random r = new Random();
+        int randomInt = r.Next(0, 5);
+
+        turnCount += 1;
 
 		ShowWhoTurn();
-        TriggerEvent();
 
-        if (currentPlayer.name == "Blue")
+        if (randomInt == 3)
+        {
+            TriggerEvent();
+        }
+
+
+        if (current_scene_name == "vsAIScene" && currentPlayer.name == "Blue")
         {
             AiTurn();
         }

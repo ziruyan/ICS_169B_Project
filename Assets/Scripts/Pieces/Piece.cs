@@ -31,7 +31,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum PieceType {King, Queen, Bishop, Knight, Rook, Pawn};
+public enum PieceType {Admiral, Major, Pikeman, Knight, Rook, Infantry};
 
 // 所有棋子的父类
 public abstract class Piece : MonoBehaviour

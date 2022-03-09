@@ -855,9 +855,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
+  name: 
   attack: 0
   defense: 0
   health: 0
+  maxHealth: 0
+  is_range: 0
   healthBar: {fileID: 2370526268058177423}
 --- !u!1 &5039865611397269804
 GameObject:
@@ -1938,6 +1941,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_PresetInfoIsWorld
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9195785145399404942, guid: 235c5161d74a8954394916f67f3cc985,
+        type: 3}
+      propertyPath: gradient.ctime0
+      value: 39899
+      objectReference: {fileID: 0}
+    - target: {fileID: 9195785145399404942, guid: 235c5161d74a8954394916f67f3cc985,
+        type: 3}
+      propertyPath: gradient.ctime1
+      value: 52235
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 235c5161d74a8954394916f67f3cc985, type: 3}

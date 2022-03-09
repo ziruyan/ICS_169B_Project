@@ -25,7 +25,12 @@ public class MainManager : MonoBehaviour
         SceneManager.LoadScene("Main",LoadSceneMode.Single);
     }
 
-	public void quitgame()
+    public void playAIgame()
+    {
+        SceneManager.LoadScene("vsAIScene", LoadSceneMode.Single);
+    }
+
+    public void quitgame()
     {
         Application.Quit();
     }

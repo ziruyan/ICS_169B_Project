@@ -35,15 +35,15 @@ public class Player
 		int king_health = 0;
 		foreach (GameObject pi in pieces)
 		{
-			if (pi.GetComponent<Piece>().type == PieceType.Pawn)
+			if (pi.GetComponent<Piece>().type == PieceType.Infantry)
 			{
 				pawn_count += 1;
 			}
-			if (pi.GetComponent<Piece>().type == PieceType.Bishop)
+			if (pi.GetComponent<Piece>().type == PieceType.Pikeman)
 			{
 				bishop_count += 1;
 			}
-			if (pi.GetComponent<Piece>().type == PieceType.King)
+			if (pi.GetComponent<Piece>().type == PieceType.Admiral)
 			{
 				king_health = pi.GetComponent<Piece>().health;
 			}

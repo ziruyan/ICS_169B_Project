@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1718775266264085934}
-  - component: {fileID: -1185214848026781892}
+  - component: {fileID: 8259438849426665618}
   m_Layer: 0
   m_Name: PikemanBlue
   m_TagString: Untagged
@@ -26,14 +26,14 @@ Transform:
   m_GameObject: {fileID: 7343725033803837200}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 1}
   m_Children:
   - {fileID: 1763791986113329528}
   - {fileID: 4155219570616865694}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-1185214848026781892
+--- !u!114 &8259438849426665618
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42,13 +42,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 7343725033803837200}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab8d0ddcf90504e8d9c1f00e2ba3f94c, type: 3}
+  m_Script: {fileID: 11500000, guid: eec5a0a4087b943028ce6350eab5e822, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 5
+  type: 2
+  name: 
   attack: 0
   defense: 0
   health: 0
+  maxHealth: 0
+  is_range: 0
   healthBar: {fileID: 1763791986201750203}
 --- !u!1001 &4476849962656986229
 PrefabInstance:
@@ -291,6 +294,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_PresetInfoIsWorld
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9195785145399404942, guid: 235c5161d74a8954394916f67f3cc985,
+        type: 3}
+      propertyPath: gradient.ctime0
+      value: 39899
+      objectReference: {fileID: 0}
+    - target: {fileID: 9195785145399404942, guid: 235c5161d74a8954394916f67f3cc985,
+        type: 3}
+      propertyPath: gradient.ctime1
+      value: 52235
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 235c5161d74a8954394916f67f3cc985, type: 3}
