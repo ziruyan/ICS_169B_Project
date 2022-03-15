@@ -2176,7 +2176,7 @@ MonoBehaviour:
   blueRook: {fileID: 71111367043683567, guid: aaccbc5c8b10a214d92f63d7452475ae, type: 3}
   blueInfantry: {fileID: 6304988305168266086, guid: 5dab3801cd9e74747a4d0e2cda71ec72,
     type: 3}
-  CombatCube: {fileID: 8986363765480521193, guid: 1e170492e087d4f4c8e4db5649275309,
+  WaterBlock: {fileID: 4792479142464276893, guid: 672e79b6bc6beb74a97cf6f59823443f,
     type: 3}
   ai: {fileID: 0}
   board_num: 20
@@ -3445,12 +3445,12 @@ PrefabInstance:
     - target: {fileID: 7698880839511283946, guid: 04a84e73a1724f548b1a7e394fc2cd35,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.56
+      value: 3.5
       objectReference: {fileID: 0}
     - target: {fileID: 7698880839511283946, guid: 04a84e73a1724f548b1a7e394fc2cd35,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.16
+      value: -0.09
       objectReference: {fileID: 0}
     - target: {fileID: 7698880839511283946, guid: 04a84e73a1724f548b1a7e394fc2cd35,
         type: 3}

@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 
 public class Board : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class Board : MonoBehaviour
 	public GameObject help_content;
 	public GameObject settings_image;
 
+
 	void Start()
 	{
 		help_image.SetActive(false);
@@ -28,11 +30,12 @@ public class Board : MonoBehaviour
         Vector2Int gridPoint = GameManager.instance.GridPoint(col, row);
         GameObject newPiece = Instantiate(piece, GameManager.instance.PointFromGrid(gridPoint), Quaternion.identity, gameObject.transform);
 
-        return newPiece;
+		return newPiece;
     }
 
+
 	// 摧毁Piece
-    public void RemovePiece(GameObject piece)
+	public void RemovePiece(GameObject piece)
     {
         Destroy(piece);
     }

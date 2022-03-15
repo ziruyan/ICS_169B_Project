@@ -2761,3 +2761,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 4
+  name: 
+  attack: 0
+  defense: 0
+  health: 0
+  maxHealth: 0
+  is_range: 0
+  healthBar: {fileID: 0}

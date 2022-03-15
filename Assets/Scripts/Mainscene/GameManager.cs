@@ -29,10 +29,12 @@ public class GameManager : MonoBehaviour
     public GameObject blueKnight;
     public GameObject blueRook;
     public GameObject blueInfantry;
-    
-    public GameObject CombatCube;
 
-	// 棋子的位置列表，标记棋盘上哪里有棋子
+    //public GameObject CombatCube;
+    public GameObject WaterBlock;
+
+
+    // 棋子的位置列表，标记棋盘上哪里有棋子
     private GameObject[,] pieces;
 
 	// 移动过第一次的Infantry
@@ -180,20 +182,71 @@ public class GameManager : MonoBehaviour
         AddPiece(blueInfantry, blue, 8, 16);
         AddPiece(blueInfantry, blue, 9, 16);
 
-
-
-
+        // Place invisble piece on water areas,
+        // so pieces may not move onto water.
+        // Note: The blue or red does not matter
+        AddWater(WaterBlock, 15, 19);
+        AddWater(WaterBlock, 14, 19);
+        AddWater(WaterBlock, 15, 18);
+        AddWater(WaterBlock, 14, 18);
+        AddWater(WaterBlock, 15, 17);
+        AddWater(WaterBlock,14, 17);
+        AddWater(WaterBlock,15, 16);
+        AddWater(WaterBlock,15, 15);
+        AddWater(WaterBlock,16, 15);
+        AddWater(WaterBlock, 16, 14);
+        AddWater(WaterBlock, 17, 14);
+        AddWater(WaterBlock, 16, 13);
+        AddWater(WaterBlock, 17, 13);
+        AddWater(WaterBlock, 16, 12);
+        AddWater(WaterBlock, 17, 12);
+        AddWater(WaterBlock, 16, 11);
+        AddWater(WaterBlock, 17, 11);
+        AddWater(WaterBlock,  16, 10);
+        AddWater(WaterBlock, 16, 9);
+        AddWater(WaterBlock, 17, 9);
+        AddWater(WaterBlock, 15, 19);
+        AddWater(WaterBlock, 17, 8);
+        AddWater(WaterBlock, 15, 7);
+        AddWater(WaterBlock, 16, 7);
+        AddWater(WaterBlock,  14, 6);
+        AddWater(WaterBlock,  15, 6);
+        AddWater(WaterBlock,  16, 6);
+        AddWater(WaterBlock, 13, 5);
+        AddWater(WaterBlock, 14, 5);
+        AddWater(WaterBlock, 12, 3);
+        AddWater(WaterBlock, 12, 2);
+        AddWater(WaterBlock, 11, 2);
+        AddWater(WaterBlock, 11, 1);
+        AddWater(WaterBlock,  10, 1);
+        AddWater(WaterBlock,  9, 1);
+        AddWater(WaterBlock,  4, 0);
+        AddWater(WaterBlock,  5, 0);
+        AddWater(WaterBlock, 6, 0);
+        AddWater(WaterBlock,  7, 0);
+        AddWater(WaterBlock, 8, 0);
+        AddWater(WaterBlock,  9, 0);
 
     }
 
-	// 加入棋子时，会需要initial 位置、模型、和所属玩家
-	// 所属玩家未来会用来判定Turn Base
+
+    // 加入棋子时，会需要initial 位置、模型、和所属玩家
+    // 所属玩家未来会用来判定Turn Base
     public void AddPiece(GameObject prefab, Player player, int col, int row)
     {
         GameObject pieceObject = board.AddPiece(prefab, col, row);
 		Piece newPiece = pieceObject.GetComponent<Piece>();
 		//newPiece.setup_attributes();
         player.pieces.Add(pieceObject);
+        pieces[col, row] = pieceObject;
+    }
+
+
+    // 加入棋子时，会需要initial 位置、模型、和所属玩家
+    // 所属玩家未来会用来判定Turn Base
+    public void AddWater(GameObject prefab, int col, int row)
+    {
+        GameObject pieceObject = board.AddPiece(prefab, col, row);
         pieces[col, row] = pieceObject;
     }
 
@@ -218,6 +271,10 @@ public class GameManager : MonoBehaviour
         // filter out offboard locations
 		int tmp = board_num - 1;
         locations.RemoveAll(gp => gp.x < 0 || gp.x > tmp || gp.y < 0 || gp.y > tmp);
+
+        Debug.Log("Going to remove water");
+        // filter out locations with water
+        locations.RemoveAll(gp => WaterCheck(gp));
 
         // filter out locations with friendly piece
         locations.RemoveAll(gp => FriendlyPieceAt(gp));
@@ -433,7 +490,8 @@ public class GameManager : MonoBehaviour
         return new Vector2Int(-1, -1);
     }
 
-	// 检测目标位置的Piece，如果有且是友军Piece，返回True
+    // Check if the location tile is friendly unit,
+    // If it is friendly, return True
     public bool FriendlyPieceAt(Vector2Int gridPoint)
     {
         GameObject piece = PieceAtGrid(gridPoint);
@@ -450,8 +508,29 @@ public class GameManager : MonoBehaviour
         return true;
     }
 
-	// 切换Turn调换这个Player标识即可
-	// AI可以在Tile里面Update或者Enter的时候做检测回合，然后再导向AI Script
+
+    // Check if the location tile is Water,
+    // If it is water, return True
+    public bool WaterCheck(Vector2Int gridPoint)
+    {
+        GameObject piece = PieceAtGrid(gridPoint);
+
+        if (piece == null)
+        {
+            return false;
+        }
+
+        if (piece.tag == "Water")
+        {
+            Debug.Log("A Water Block found!");
+            return true;
+        }
+
+        return false;
+    }
+
+    // 切换Turn调换这个Player标识即可
+    // AI可以在Tile里面Update或者Enter的时候做检测回合，然后再导向AI Script
     public void NextPlayer()
     {
         Player tempPlayer = currentPlayer;
