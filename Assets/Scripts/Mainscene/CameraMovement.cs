@@ -20,7 +20,7 @@ public class CameraMovement : MonoBehaviour
     float rotationY = -60F;
 
     // For camera movement
-    float CameraPanningSpeed = 10.0f;
+    //float CameraPanningSpeed = 10.0f;
 
 
 	// Update的时候检测鼠标输入，用鼠标中键移动，鼠标右键旋转，鼠标滚轮Zoom In

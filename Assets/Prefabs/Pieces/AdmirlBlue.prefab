@@ -822,7 +822,7 @@ GameObject:
   - component: {fileID: -8295596083683089709}
   m_Layer: 0
   m_Name: AdmirlBlue
-  m_TagString: Untagged
+  m_TagString: Blue
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -861,6 +861,9 @@ MonoBehaviour:
   health: 0
   maxHealth: 0
   is_range: 0
+  rangeNum: 0
+  defaultRange: 0
+  specialMessage: 
   healthBar: {fileID: 2370526268058177423}
 --- !u!1 &5039865611397269804
 GameObject:

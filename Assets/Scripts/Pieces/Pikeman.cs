@@ -11,7 +11,8 @@ public class Pikeman : Piece
 
         foreach (Vector2Int dir in RookDirections)
         {
-            for (int i = 1; i < 5; i++)
+            Debug.Log("It's range is" + rangeNum);
+            for (int i = 1; i < rangeNum; i++)
             {
                 Vector2Int nextGridPoint = new Vector2Int(gridPoint.x + i * dir.x, gridPoint.y + i * dir.y);
                 locations.Add(nextGridPoint);
@@ -28,10 +29,16 @@ public class Pikeman : Piece
 	public override void setup_attributes()
 	{
 		name = "Pikeman";
-		is_range = 1;
-		attack = 2;
-		defense = 1;
+		is_range = 0;
+		attack = 1;
+		defense = 0;
 		health = 3;
-		maxHealth = health;
-	}
+		maxHealth = 3;
+        defaultRange = 3;
+        rangeNum = 3;
+        specialMessage = "This infantry moved into a forest, range is reduced.";
+        description = "They are the great man who volunteered to fight for their home and bleed for their belief.";
+        healthBar.SetHealth(health);
+        healthBar.SetMaxHealth(maxHealth);
+    }
 }

@@ -9,10 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1731420891401429884}
-  - component: {fileID: -8605904743115758691}
+  - component: {fileID: 8302455453169609440}
   m_Layer: 0
   m_Name: MajorBlue
-  m_TagString: Untagged
+  m_TagString: Blue
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -33,7 +33,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-8605904743115758691
+--- !u!114 &8302455453169609440
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42,7 +42,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8903384167865516157}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f31683863a35f41cf80e34dae54c1a89, type: 3}
+  m_Script: {fileID: 11500000, guid: 3a80239f8d0914c9cb07dd15d315b344, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   type: 1
@@ -52,6 +52,9 @@ MonoBehaviour:
   health: 0
   maxHealth: 0
   is_range: 0
+  rangeNum: 0
+  defaultRange: 0
+  specialMessage: 
   healthBar: {fileID: 7326874265285482777}
 --- !u!1001 &444289508797084020
 PrefabInstance:

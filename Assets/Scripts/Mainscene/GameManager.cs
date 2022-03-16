@@ -15,23 +15,31 @@ public class GameManager : MonoBehaviour
 	// 保证Board的连续性
     public Board board;
 
-	// 棋子模型
+	// Army Unit Model
     public GameObject redAdmiral;
-    public GameObject redMajor;
+    public GameObject redLieutenant;
     public GameObject redPikeman;
-    public GameObject redKnight;
-    public GameObject redRook;
-    public GameObject redInfantry;
+    public GameObject redCavalry;
+    public GameObject redCannon;
+    public GameObject redRifleman;
 
     public GameObject blueAdmiral;
-    public GameObject blueMajor;
+    public GameObject blueLieutenant;
     public GameObject bluePikeman;
-    public GameObject blueKnight;
-    public GameObject blueRook;
-    public GameObject blueInfantry;
+    public GameObject blueCavalry;
+    public GameObject blueCannon;
+    public GameObject blueRifleman;
 
-    //public GameObject CombatCube;
-    public GameObject WaterBlock;
+    // Non Unit Model
+    public GameObject ObstacleBlock;
+    public GameObject TownBlock;
+    public GameObject FortressBlock;
+    public GameObject ForestBlock;
+    public GameObject MoutainBlock;
+
+    public GameObject[] BlueUnitsList;
+    public GameObject[] RedUnitsList;
+
 
 
     // 棋子的位置列表，标记棋盘上哪里有棋子
@@ -65,12 +73,14 @@ public class GameManager : MonoBehaviour
 
 	// 跳转到结束Scene
 	public string end_scene_name;
+    public string start_scene_name;
 
 	public GameObject unit_title_UI;
 	public GameObject unit_info_UI;
 	public GameObject unit_image_UI;
 
 	public GameObject whoTurnIndicator;
+    public GameObject EventText;
 
 	public GameObject Panel_Your;
 	public GameObject Panel_Enemy;
@@ -124,7 +134,10 @@ public class GameManager : MonoBehaviour
 		// 创建所有的棋子
         InitialSetup();
 
-		unit_title_UI.SetActive(false);
+        BlueUnitsList = GameObject.FindGameObjectsWithTag("Blue");
+        RedUnitsList = GameObject.FindGameObjectsWithTag("Red");
+
+        unit_title_UI.SetActive(false);
 		unit_info_UI.SetActive(false);
 		unit_image_UI.SetActive(false);
 
@@ -144,7 +157,7 @@ public class GameManager : MonoBehaviour
 	//创建所有棋子，绑定玩家，设置初始位置，调用模型
     private void InitialSetup()
     {
-
+        // Team Red's inital locations
         AddPiece(redPikeman, red, 4, 7);
         AddPiece(redPikeman, red, 5, 7);
         AddPiece(redPikeman, red, 6, 7);
@@ -152,80 +165,114 @@ public class GameManager : MonoBehaviour
         AddPiece(redPikeman, red, 6, 5);
 
 
-        AddPiece(redMajor, red, 8,12 );
+        AddPiece(redLieutenant, red, 8,12 );
         AddPiece(redAdmiral, red, 5, 5);
+
+        AddPiece(redCannon, red, 6, 11);
+        AddPiece(redCannon, red, 9, 11);
 
         for (int i = 7; i < 11; i++)
         {
-            AddPiece(redInfantry, red, i, 14);
+            AddPiece(redRifleman, red, i, 14);
         }
 
         for (int i = 3; i < 6; i++)
         {
-            AddPiece(redInfantry, red, 10, i);
+            AddPiece(redRifleman, red, 10, i);
         }
+        AddPiece(redCavalry, red, 9, 3);
+        AddPiece(redCavalry, red, 9, 4);
+        AddPiece(redCavalry, red, 9, 5);
 
 
+
+
+        // Team Blue's inital locations
         AddPiece(blueAdmiral, blue, 18, 18);
         AddPiece(bluePikeman, blue, 16, 18);
         AddPiece(bluePikeman, blue, 16, 17);
 
-        AddPiece(blueMajor, blue, 17, 4);
-        AddPiece(blueInfantry, blue, 15, 2);
-        AddPiece(blueInfantry, blue, 15, 3);
-        AddPiece(blueInfantry, blue, 15, 4);
+        AddPiece(blueLieutenant, blue, 17, 4);
+        AddPiece(blueRifleman, blue, 15, 2);
+        AddPiece(blueRifleman, blue, 15, 3);
+        AddPiece(blueRifleman, blue, 15, 4);
 
-        AddPiece(blueMajor, blue, 8, 18);
-        AddPiece(bluePikeman, blue, 7, 17);
-        AddPiece(bluePikeman, blue, 9, 17);
-        AddPiece(blueInfantry, blue, 7, 16);
-        AddPiece(blueInfantry, blue, 8, 16);
-        AddPiece(blueInfantry, blue, 9, 16);
+        AddPiece(blueLieutenant, blue, 8, 18);
+        AddPiece(bluePikeman, blue, 6, 17);
+        AddPiece(bluePikeman, blue, 10, 17);
+        AddPiece(blueRifleman, blue, 7, 16);
+        AddPiece(blueRifleman, blue, 8, 16);
+        AddPiece(blueRifleman, blue, 9, 16);
 
-        // Place invisble piece on water areas,
-        // so pieces may not move onto water.
-        // Note: The blue or red does not matter
-        AddWater(WaterBlock, 15, 19);
-        AddWater(WaterBlock, 14, 19);
-        AddWater(WaterBlock, 15, 18);
-        AddWater(WaterBlock, 14, 18);
-        AddWater(WaterBlock, 15, 17);
-        AddWater(WaterBlock,14, 17);
-        AddWater(WaterBlock,15, 16);
-        AddWater(WaterBlock,15, 15);
-        AddWater(WaterBlock,16, 15);
-        AddWater(WaterBlock, 16, 14);
-        AddWater(WaterBlock, 17, 14);
-        AddWater(WaterBlock, 16, 13);
-        AddWater(WaterBlock, 17, 13);
-        AddWater(WaterBlock, 16, 12);
-        AddWater(WaterBlock, 17, 12);
-        AddWater(WaterBlock, 16, 11);
-        AddWater(WaterBlock, 17, 11);
-        AddWater(WaterBlock,  16, 10);
-        AddWater(WaterBlock, 16, 9);
-        AddWater(WaterBlock, 17, 9);
-        AddWater(WaterBlock, 15, 19);
-        AddWater(WaterBlock, 17, 8);
-        AddWater(WaterBlock, 15, 7);
-        AddWater(WaterBlock, 16, 7);
-        AddWater(WaterBlock,  14, 6);
-        AddWater(WaterBlock,  15, 6);
-        AddWater(WaterBlock,  16, 6);
-        AddWater(WaterBlock, 13, 5);
-        AddWater(WaterBlock, 14, 5);
-        AddWater(WaterBlock, 12, 3);
-        AddWater(WaterBlock, 12, 2);
-        AddWater(WaterBlock, 11, 2);
-        AddWater(WaterBlock, 11, 1);
-        AddWater(WaterBlock,  10, 1);
-        AddWater(WaterBlock,  9, 1);
-        AddWater(WaterBlock,  4, 0);
-        AddWater(WaterBlock,  5, 0);
-        AddWater(WaterBlock, 6, 0);
-        AddWater(WaterBlock,  7, 0);
-        AddWater(WaterBlock, 8, 0);
-        AddWater(WaterBlock,  9, 0);
+        AddPiece(blueCannon, blue, 7, 18);
+        AddPiece(blueCannon, blue, 9, 18);
+
+        AddPiece(blueCavalry, blue, 16, 1);
+        AddPiece(blueCavalry, blue, 16, 2);
+        AddPiece(blueCavalry, blue, 16, 3);
+
+        // Place invisble object on water tiles,
+        // so pieces may not move onto them.
+        AddObstacle(ObstacleBlock, 15, 19);
+        AddObstacle(ObstacleBlock, 14, 19);
+        AddObstacle(ObstacleBlock, 15, 18);
+        AddObstacle(ObstacleBlock, 14, 18);
+        AddObstacle(ObstacleBlock, 15, 17);
+        AddObstacle(ObstacleBlock, 14, 17);
+        AddObstacle(ObstacleBlock, 15, 16);
+        AddObstacle(ObstacleBlock, 15, 15);
+        AddObstacle(ObstacleBlock, 16, 15);
+        AddObstacle(ObstacleBlock, 16, 14);
+        AddObstacle(ObstacleBlock, 17, 14);
+        AddObstacle(ObstacleBlock, 16, 13);
+        AddObstacle(ObstacleBlock, 17, 13);
+        AddObstacle(ObstacleBlock, 16, 12);
+        AddObstacle(ObstacleBlock, 17, 12);
+        AddObstacle(ObstacleBlock, 16, 11);
+        AddObstacle(ObstacleBlock, 17, 11);
+        AddObstacle(ObstacleBlock,  16, 10);
+        AddObstacle(ObstacleBlock, 16, 9);
+        AddObstacle(ObstacleBlock, 17, 9);
+        AddObstacle(ObstacleBlock, 15, 19);
+        AddObstacle(ObstacleBlock, 17, 8);
+        AddObstacle(ObstacleBlock, 15, 7);
+        AddObstacle(ObstacleBlock, 16, 7);
+        AddObstacle(ObstacleBlock,  14, 6);
+        AddObstacle(ObstacleBlock,  15, 6);
+        AddObstacle(ObstacleBlock,  16, 6);
+        AddObstacle(ObstacleBlock, 13, 5);
+        AddObstacle(ObstacleBlock, 14, 5);
+        AddObstacle(ObstacleBlock, 12, 3);
+        AddObstacle(ObstacleBlock, 12, 2);
+        AddObstacle(ObstacleBlock, 11, 2);
+        AddObstacle(ObstacleBlock, 11, 1);
+        AddObstacle(ObstacleBlock,  10, 1);
+        AddObstacle(ObstacleBlock,  9, 1);
+        AddObstacle(ObstacleBlock,  4, 0);
+        AddObstacle(ObstacleBlock,  5, 0);
+        AddObstacle(ObstacleBlock, 6, 0);
+        AddObstacle(ObstacleBlock,  7, 0);
+        AddObstacle(ObstacleBlock, 8, 0);
+        AddObstacle(ObstacleBlock,  9, 0);
+
+        // Add invisible objects on Mountain tiles
+        AddObstacle(ObstacleBlock, 2, 17);
+        AddObstacle(ObstacleBlock, 3, 17);
+        AddObstacle(ObstacleBlock, 4, 17);
+        AddObstacle(ObstacleBlock, 2, 18);
+        AddObstacle(ObstacleBlock, 3, 18);
+        AddObstacle(ObstacleBlock, 4, 18);
+        AddObstacle(ObstacleBlock, 2, 9);
+        AddObstacle(ObstacleBlock, 3, 9);
+        AddObstacle(ObstacleBlock, 4, 9);
+        AddObstacle(ObstacleBlock, 2, 10);
+        AddObstacle(ObstacleBlock, 3, 10);
+        AddObstacle(ObstacleBlock, 4, 10);
+        AddObstacle(ObstacleBlock, 7, 17);
+        AddObstacle(ObstacleBlock, 8, 17);
+        AddObstacle(ObstacleBlock, 9, 17);
+
+
 
     }
 
@@ -244,7 +291,7 @@ public class GameManager : MonoBehaviour
 
     // 加入棋子时，会需要initial 位置、模型、和所属玩家
     // 所属玩家未来会用来判定Turn Base
-    public void AddWater(GameObject prefab, int col, int row)
+    public void AddObstacle(GameObject prefab, int col, int row)
     {
         GameObject pieceObject = board.AddPiece(prefab, col, row);
         pieces[col, row] = pieceObject;
@@ -274,7 +321,7 @@ public class GameManager : MonoBehaviour
 
         Debug.Log("Going to remove water");
         // filter out locations with water
-        locations.RemoveAll(gp => WaterCheck(gp));
+        locations.RemoveAll(gp => ObstacleCheck(gp));
 
         // filter out locations with friendly piece
         locations.RemoveAll(gp => FriendlyPieceAt(gp));
@@ -287,7 +334,7 @@ public class GameManager : MonoBehaviour
     {
         Piece pieceComponent = piece.GetComponent<Piece>();
         // Infantry只有第一次可以走两格
-        if (pieceComponent.type == PieceType.Infantry && !HasInfantryMoved(piece))
+        if (pieceComponent.type == PieceType.Rifleman && !HasInfantryMoved(piece))
         {
             movedInfantrys.Add(piece);
         }
@@ -358,7 +405,13 @@ public class GameManager : MonoBehaviour
 		SceneManager.LoadScene(end_scene_name, LoadSceneMode.Single);
 	}
 
-	public void SaveTwoPieces(GameObject py, GameObject pe)
+    public void GoToStartScene()
+    {
+        SceneManager.LoadScene(start_scene_name, LoadSceneMode.Single);
+    }
+
+
+    public void SaveTwoPieces(GameObject py, GameObject pe)
 	{
 		p_y = py;
 		p_e = pe;
@@ -427,19 +480,13 @@ public class GameManager : MonoBehaviour
 		unit_info_UI.SetActive(true);
 		unit_image_UI.SetActive(true);
 
-		string title = "Name:" + pieceComponent.name.ToString();
-		string info = "Attack:" + pieceComponent.attack.ToString() + "\n";
-		info += "Defense:" + pieceComponent.defense.ToString() + "\n";
-		info += "Health:" + pieceComponent.health.ToString() + "\n";
-		if (pieceComponent.is_range == 0)
-		{
-			info += "Melee Unit";
-		}
-		else
-		{
-			info += "Range Unit";
-		}
-
+		string title = "Name: " + pieceComponent.name.ToString();
+		string info = "Attack: " + pieceComponent.attack.ToString() + "\n";
+		info += "Defense: " + pieceComponent.defense.ToString() + "\n";
+		info += "Health: " + pieceComponent.health.ToString() + "\n";
+        info += "\n";
+        info += "Description: " + "\n" + pieceComponent.description.ToString() + "\n";
+        
 		unit_title_UI.GetComponent<Text>().text = title;
 		unit_info_UI.GetComponent<Text>().text = info;
 
@@ -508,10 +555,76 @@ public class GameManager : MonoBehaviour
         return true;
     }
 
+    public void LocationCheck(GameObject unit)
+    {
+        Piece newPiece = unit.GetComponent<Piece>();
+        Vector2Int unitGridPoint = GridForPiece(unit);
+        Vector2Int[] TownList = { new Vector2Int(3, 6), new Vector2Int(4,6), 
+            new Vector2Int(5, 6), new Vector2Int(3, 5), new Vector2Int(4, 5), new Vector2Int(5, 5), new Vector2Int(3, 4), new Vector2Int(4, 4), new Vector2Int(5, 4) };
+        
+        Vector2Int[] ForestList = { new Vector2Int(18, 10), new Vector2Int(18,11), 
+            new Vector2Int(18,12), new Vector2Int(11, 10), new Vector2Int(12, 10), new Vector2Int(11, 11), new Vector2Int(12, 11), new Vector2Int(11, 12),
+            new Vector2Int(12, 12),new Vector2Int(11, 13),new Vector2Int(12, 13),new Vector2Int(11, 14),new Vector2Int(12, 14),new Vector2Int(11, 15),
+            new Vector2Int(12, 15),new Vector2Int(11, 16),new Vector2Int(12, 16), new Vector2Int(4, 14),new Vector2Int(4, 15),new Vector2Int(5, 14),new Vector2Int(5, 15),
+            new Vector2Int(3, 11),new Vector2Int(3, 12),new Vector2Int(3, 13),new Vector2Int(4, 11),new Vector2Int(4, 12),new Vector2Int(4, 13),new Vector2Int(18, 4),new Vector2Int(18, 5), 
+            new Vector2Int(9, 6),new Vector2Int(10, 6),new Vector2Int(11, 6),new Vector2Int(9, 7),new Vector2Int(10, 7),new Vector2Int(11, 7)};
+        
+        Vector2Int[] FortList = { new Vector2Int(8, 18), new Vector2Int(17, 4), new Vector2Int(17, 4) , new Vector2Int(7, 12), new Vector2Int(8, 12), new Vector2Int(7, 13) };
+
+
+
+        for (int i = 0; i < TownList.Length; i++)
+        {
+            if (unitGridPoint == TownList[i])
+            {
+                if (newPiece.health != newPiece.maxHealth)
+                {
+                    newPiece.add_health(2);
+                    TriggerUnitSpecialEvent("Unit stationed at the Town and 2 HP is recovered.");
+                }
+                else
+                {
+                    newPiece.recover_full_health();
+                    TriggerUnitSpecialEvent("Unit stationed at the Town to heal and recover, HP +2.");
+                    Debug.Log("The health is already full");
+                }
+            }
+        }
+
+        for (int i = 0; i < ForestList.Length; i++)
+        {
+            if (unitGridPoint == ForestList[i])
+            {
+                Debug.Log("Reduce the range of unit");
+                newPiece.set_range(newPiece.rangeNum-1);
+                TriggerUnitSpecialEvent(newPiece.showMessage());
+                break;
+            }
+            else
+            {
+                Debug.Log("Go back to default range");
+                newPiece.set_range(newPiece.defaultRange);
+            }
+        }
+
+        for (int i = 0; i < FortList.Length; i++)
+        {
+            if (unitGridPoint == TownList[i])
+            {
+                newPiece.add_defense(1);
+                TriggerUnitSpecialEvent("Unit stationed at the Fortress and picked up some new armor, Defense +1.");
+            }
+        }
+
+
+
+
+    }
+
 
     // Check if the location tile is Water,
     // If it is water, return True
-    public bool WaterCheck(Vector2Int gridPoint)
+    public bool ObstacleCheck(Vector2Int gridPoint)
     {
         GameObject piece = PieceAtGrid(gridPoint);
 
@@ -539,15 +652,14 @@ public class GameManager : MonoBehaviour
 
         // generate a random number/event
         Random r = new Random();
-        int randomInt = r.Next(0, 5);
-
+        int randomInt = r.Next(0, 20);
         turnCount += 1;
 
 		ShowWhoTurn();
 
-        if (randomInt == 3)
+        if (randomInt <= 8)
         {
-            TriggerEvent();
+            TriggerRandomEvent(randomInt);
         }
 
 
@@ -586,9 +698,91 @@ public class GameManager : MonoBehaviour
     }
 
 
-    // 随机触发一个random的event
-    public void TriggerEvent()
+    public void TriggerUnitSpecialEvent(string message)
     {
+        EventText.GetComponent<TextMeshProUGUI>().text = message;
+        if (popUpBox.activeSelf == true)
+        {
+            popUpBox.SetActive(false);
+        }
+        else
+        {
+            popUpBox.SetActive(true);
+        }
+    }
+
+    // 随机触发一个random的event
+    public void TriggerRandomEvent(int eventNum)
+    {
+        if (eventNum == 1)
+        {
+            EventText.GetComponent<TextMeshProUGUI>().text = "Union army is suffering from the cold weather. All union units -1 HP.";
+            for (int i = 0; i < BlueUnitsList.Length; i++)
+            {
+                BlueUnitsList[i].GetComponent<Piece>().health -= 1;
+                BlueUnitsList[i].GetComponent<Piece>().healthBar.SetHealth(BlueUnitsList[i].GetComponent<Piece>().health);
+            }
+        }
+
+        if (eventNum == 2)
+        {
+            EventText.GetComponent<TextMeshProUGUI>().text = "Several Union carriages of supplies arrived! All units +1 Defense.";
+            for (int i = 0; i < BlueUnitsList.Length; i++)
+            {
+                BlueUnitsList[i].GetComponent<Piece>().defense += 1;
+            }
+        }
+
+        if (eventNum == 3)
+        {
+            EventText.GetComponent<TextMeshProUGUI>().text = "More weapons arrived from armory! All Unions units +1 Attack.";
+            for (int i = 0; i < BlueUnitsList.Length; i++)
+            {
+                BlueUnitsList[i].GetComponent<Piece>().attack += 1;
+            }
+        }
+
+        if (eventNum == 4)
+        {
+            EventText.GetComponent<TextMeshProUGUI>().text = "A small team of Union reinforcements arrived from the top right of the battle field!";
+        }
+
+        if (eventNum == 5)
+        {
+            EventText.GetComponent<TextMeshProUGUI>().text = "A small team of Confederate reinforcements arrived from the lower left right of the battle field!";
+        }
+
+        if (eventNum == 6)
+        {
+            EventText.GetComponent<TextMeshProUGUI>().text = "More weapons arrived from armory! All Confederate units +1 Attack.";
+            for (int i = 0; i < RedUnitsList.Length; i++)
+            {
+                RedUnitsList[i].GetComponent<Piece>().attack += 1;
+            }
+        }
+
+        if (eventNum == 7)
+        {
+            EventText.GetComponent<TextMeshProUGUI>().text = "Several Confederate carriages of supplies arrived! All units +1 Defense.";
+            for (int i = 0; i < RedUnitsList.Length; i++)
+            {
+                RedUnitsList[i].GetComponent<Piece>().defense += 1;
+            }
+
+        }
+
+        if (eventNum == 8)
+        {
+            EventText.GetComponent<TextMeshProUGUI>().text = "Confederate army is suffering from the cold weather. All Confederate units -1 HP.";
+            for (int i = 0; i < RedUnitsList.Length; i++)
+            {
+                RedUnitsList[i].GetComponent<Piece>().health -= 1;
+                RedUnitsList[i].GetComponent<Piece>().healthBar.SetHealth(RedUnitsList[i].GetComponent<Piece>().health);
+            }
+
+
+        }
+
         if (popUpBox.activeSelf == true)
         {
             popUpBox.SetActive(false);
@@ -636,6 +830,9 @@ public class GameManager : MonoBehaviour
         int row = Mathf.FloorToInt(0.5f + point.z);
         return new Vector2Int(col, row);
     }
+
+
+
 
     private IEnumerator<int> Wait()
     {

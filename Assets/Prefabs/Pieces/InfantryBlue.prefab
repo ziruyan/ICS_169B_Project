@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6258400686302967968}
   m_Layer: 0
   m_Name: InfantryBlue
-  m_TagString: Untagged
+  m_TagString: Blue
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -52,6 +52,9 @@ MonoBehaviour:
   health: 0
   maxHealth: 0
   is_range: 0
+  rangeNum: 0
+  defaultRange: 0
+  specialMessage: 
   healthBar: {fileID: 4191968851058341172}
 --- !u!1001 &3227426133518752316
 PrefabInstance:

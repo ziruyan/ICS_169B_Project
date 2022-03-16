@@ -5,18 +5,17 @@ ScriptsOnlyBuild:
     - Billboard
     - Board
     - CameraMovement
-    - Combat
+    - Cannon
+    - Cavalry
     - EndSceneManager
     - GameManager
     - HealthBar
-    - Infantry
-    - Knight
+    - Lieutenant
     - MainManager
-    - Major
     - MoveSelector
     - MusicPlayer
     - Pikeman
-    - Rook
+    - Rifleman
     - TileSelector
     Unity.2D.Tilemap.Editor.dll:
     - UnityEditor.Tilemaps.GridPaintingState
@@ -51,7 +50,6 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.Scrollbar
     - UnityEngine.UI.Slider
     - UnityEngine.UI.Text
-    - UnityEngine.UI.VerticalLayoutGroup
   sceneClasses:
     Assets/Scenes/END SCENE.unity:
     - Class: 1
@@ -129,8 +127,6 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 64
       Script: {instanceID: 0}
-    - Class: 65
-      Script: {instanceID: 0}
     - Class: 81
       Script: {instanceID: 0}
     - Class: 82
@@ -181,10 +177,6 @@ ScriptsOnlyBuild:
       Script: {instanceID: 3050}
     - Class: 114
       Script: {instanceID: 3116}
-    - Class: 114
-      Script: {instanceID: 3140}
-    - Class: 114
-      Script: {instanceID: 3418}
     - Class: 114
       Script: {instanceID: 3928}
     - Class: 114
@@ -283,9 +275,13 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 3002}
     - Class: 114
+      Script: {instanceID: 3012}
+    - Class: 114
       Script: {instanceID: 3116}
     - Class: 114
       Script: {instanceID: 4054}
+    - Class: 114
+      Script: {instanceID: 4074}
     - Class: 114
       Script: {instanceID: 4156}
     - Class: 114
@@ -326,8 +322,6 @@ ScriptsOnlyBuild:
     - Class: 48
       Script: {instanceID: 0}
     - Class: 64
-      Script: {instanceID: 0}
-    - Class: 65
       Script: {instanceID: 0}
     - Class: 81
       Script: {instanceID: 0}
@@ -379,10 +373,6 @@ ScriptsOnlyBuild:
       Script: {instanceID: 3050}
     - Class: 114
       Script: {instanceID: 3116}
-    - Class: 114
-      Script: {instanceID: 3140}
-    - Class: 114
-      Script: {instanceID: 3418}
     - Class: 114
       Script: {instanceID: 3928}
     - Class: 114
@@ -488,7 +478,7 @@ ScriptsOnlyBuild:
     className: LayoutElement
   - hash:
       serializedVersion: 2
-      Hash: 90cbf0ccf2616448219f69fc3da351da
+      Hash: 983b35073002d83ac019930b3741ae03
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GameManager
@@ -596,10 +586,10 @@ ScriptsOnlyBuild:
     className: PlaymodeTestsController
   - hash:
       serializedVersion: 2
-      Hash: db00edc734218a2f0e0fd041b8a6de5f
+      Hash: 0ac027447e9a0e3b561dbd4c0530f6c7
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: Infantry
+    className: Rifleman
   - hash:
       serializedVersion: 2
       Hash: c1d728126ff1918728036c59106d32b2
@@ -608,7 +598,7 @@ ScriptsOnlyBuild:
     className: RawImage
   - hash:
       serializedVersion: 2
-      Hash: db00edc734218a2f0e0fd041b8a6de5f
+      Hash: 0ac027447e9a0e3b561dbd4c0530f6c7
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Admiral
@@ -728,7 +718,7 @@ ScriptsOnlyBuild:
     className: TestRunCallbackListener
   - hash:
       serializedVersion: 2
-      Hash: 2b84b1eba03692cdaa5ae33a5b248394
+      Hash: 95d40a9872d362bb394194f0ba4e7cca
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: MainManager
@@ -764,7 +754,7 @@ ScriptsOnlyBuild:
     className: Benchmark03
   - hash:
       serializedVersion: 2
-      Hash: db00edc734218a2f0e0fd041b8a6de5f
+      Hash: 0ac027447e9a0e3b561dbd4c0530f6c7
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Pikeman
@@ -806,10 +796,10 @@ ScriptsOnlyBuild:
     className: MarkerTrack
   - hash:
       serializedVersion: 2
-      Hash: db00edc734218a2f0e0fd041b8a6de5f
+      Hash: 0ac027447e9a0e3b561dbd4c0530f6c7
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: Rook
+    className: Lieutenant
   - hash:
       serializedVersion: 2
       Hash: 8e6ceabfd38a184413d69b7db56c89cc
@@ -1100,10 +1090,10 @@ ScriptsOnlyBuild:
     className: CameraController
   - hash:
       serializedVersion: 2
-      Hash: db00edc734218a2f0e0fd041b8a6de5f
+      Hash: 0ac027447e9a0e3b561dbd4c0530f6c7
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: Major
+    className: Cannon
   - hash:
       serializedVersion: 2
       Hash: 893dbdbfe611d62e230a686ea89f1efd
@@ -1214,10 +1204,10 @@ ScriptsOnlyBuild:
     className: AsyncWebUtil
   - hash:
       serializedVersion: 2
-      Hash: db00edc734218a2f0e0fd041b8a6de5f
+      Hash: 0ac027447e9a0e3b561dbd4c0530f6c7
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: Knight
+    className: Cavalry
   - hash:
       serializedVersion: 2
       Hash: b6514f552bd2ee9e736a5678aa7f7de3
@@ -1278,4 +1268,4 @@ ScriptsOnlyBuild:
   - Assets/Scenes/Main.unity
   - Assets/Scenes/vsAIScene.unity
   - Assets/Scenes/END SCENE.unity
-  playerPath: C:/Users/Admin/Desktop/Week8Build/Chess-first-draft.exe
+  playerPath: C:/Users/Admin/Desktop/169Final Pre-release/Chess-first-draft.exe

@@ -9,10 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3773554118487047908}
-  - component: {fileID: 7155319469562807309}
+  - component: {fileID: 4065578079860875284}
   m_Layer: 0
   m_Name: MajorRed
-  m_TagString: Untagged
+  m_TagString: Red
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -33,7 +33,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7155319469562807309
+--- !u!114 &4065578079860875284
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42,7 +42,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3113081265536906328}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f31683863a35f41cf80e34dae54c1a89, type: 3}
+  m_Script: {fileID: 11500000, guid: 3a80239f8d0914c9cb07dd15d315b344, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   type: 1
@@ -52,6 +52,9 @@ MonoBehaviour:
   health: 0
   maxHealth: 0
   is_range: 0
+  rangeNum: 0
+  defaultRange: 0
+  specialMessage: 
   healthBar: {fileID: 393499397236305539}
 --- !u!1001 &7359075778716850184
 PrefabInstance:

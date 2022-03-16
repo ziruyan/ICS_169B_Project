@@ -7,6 +7,7 @@ public class MainManager : MonoBehaviour
 {
 
     public GameObject settings_image;
+    public GameObject tutorial_image;
 
     // Start is called before the first frame update
     void Start()
@@ -34,8 +35,8 @@ public class MainManager : MonoBehaviour
     {
         Application.Quit();
     }
-
-    	public void ShowSettings()
+    
+    public void ShowSettings()
     {
 		if (settings_image.activeSelf == false)
 		{
@@ -47,7 +48,19 @@ public class MainManager : MonoBehaviour
 		}
 	}
 
-	public void CloseSettings()
+    public void ShowTutorial()
+    {
+        if (tutorial_image.activeSelf == false)
+        {
+            tutorial_image.SetActive(true);
+        }
+        else
+        {
+            tutorial_image.SetActive(false);
+        }
+    }
+
+    public void CloseSettings()
 	{
 		settings_image.SetActive(false);
 	}

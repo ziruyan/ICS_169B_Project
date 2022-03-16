@@ -54,6 +54,7 @@ public class MoveSelector : MonoBehaviour
                 if (GameManager.instance.PieceAtGrid(gridPoint) == null)
                 {
                     GameManager.instance.Move(movingPiece, gridPoint);
+                    GameManager.instance.LocationCheck(movingPiece);
 					ExitState();
                 }
                 else

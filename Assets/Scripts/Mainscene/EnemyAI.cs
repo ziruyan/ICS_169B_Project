@@ -28,7 +28,7 @@ public class EnemyAI : MonoBehaviour
     public GameObject get_move_piece(GameManager instance)
     {
         bool check = true;
-        int i = 0;
+        //int i = 0;
 
         while (check)
         {

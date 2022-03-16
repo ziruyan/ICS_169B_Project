@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2652752441610265035}
   m_Layer: 0
   m_Name: InfantryRed
-  m_TagString: Untagged
+  m_TagString: Red
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -52,6 +52,9 @@ MonoBehaviour:
   health: 0
   maxHealth: 0
   is_range: 0
+  rangeNum: 0
+  defaultRange: 0
+  specialMessage: 
   healthBar: {fileID: 7861882316598895936}
 --- !u!1001 &1335028729261657294
 PrefabInstance:

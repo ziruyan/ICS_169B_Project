@@ -3,7 +3,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum PieceType {Admiral, Major, Pikeman, Knight, Rook, Infantry};
+public enum PieceType {Admiral, Lieutenant, Pikeman, Cavalry, Cannon, Rifleman};
 
 // 所有棋子的父类
 public abstract class Piece : MonoBehaviour
@@ -16,6 +16,10 @@ public abstract class Piece : MonoBehaviour
 	public int health;
 	public int maxHealth;
 	public int is_range;
+	public int rangeNum;
+	public int defaultRange;
+	public string specialMessage;
+	public string description;
 
 	public HealthBar healthBar;
 
@@ -35,12 +39,19 @@ public abstract class Piece : MonoBehaviour
 
 	public virtual void setup_attributes()
 	{
-		name = "Soldiers";
+		name = "";
+		defaultRange = 1;
+		rangeNum = 1;
 		is_range = 0;
 		attack = 2;
 		defense = 1;
 		health = 2;
-		maxHealth = health;
+		maxHealth = 2;
+		specialMessage = "Placeholder for Texts";
+		description = "Placeholder";
+		healthBar.SetHealth(health);
+		healthBar.SetMaxHealth(maxHealth);
+
 	}
 
 	public void attack_piece(Piece p2)
@@ -67,4 +78,38 @@ public abstract class Piece : MonoBehaviour
 		healthBar.SetHealth(health);
 		p2.healthBar.SetHealth(p2.health);
 	}
+
+	public void add_health(int value)
+    {
+		health = health + value;
+		healthBar.SetHealth(health);
+	}
+
+	public void recover_full_health()
+	{
+		health = maxHealth;
+		healthBar.SetHealth(health);
+	}
+
+	public void add_attack(int value)
+	{
+		attack = attack + value;
+	}
+
+	public void add_defense(int value)
+	{
+		defense = defense + value;
+	}
+
+	public void set_range(int range)
+    {
+		rangeNum = range;
+    }
+
+	public string showMessage()
+    {
+		return specialMessage;
+    }
+
+
 }

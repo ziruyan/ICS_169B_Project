@@ -660,7 +660,7 @@ GameObject:
   - component: {fileID: 5111420683201226125}
   m_Layer: 0
   m_Name: AdmiralRed
-  m_TagString: Untagged
+  m_TagString: Red
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -699,6 +699,9 @@ MonoBehaviour:
   health: 0
   maxHealth: 0
   is_range: 0
+  rangeNum: 0
+  defaultRange: 0
+  specialMessage: 
   healthBar: {fileID: 8315398712455347811}
 --- !u!1 &3459230596422619837
 GameObject:

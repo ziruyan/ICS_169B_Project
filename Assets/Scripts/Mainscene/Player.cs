@@ -35,7 +35,7 @@ public class Player
 		int king_health = 0;
 		foreach (GameObject pi in pieces)
 		{
-			if (pi.GetComponent<Piece>().type == PieceType.Infantry)
+			if (pi.GetComponent<Piece>().type == PieceType.Rifleman)
 			{
 				pawn_count += 1;
 			}
