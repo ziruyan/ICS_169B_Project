@@ -335,7 +335,7 @@ public class GameManager : MonoBehaviour
 		int tmp = board_num - 1;
         locations.RemoveAll(gp => gp.x < 0 || gp.x > tmp || gp.y < 0 || gp.y > tmp);
 
-        Debug.Log("Going to remove water");
+        //Debug.Log("Going to remove water");
         // filter out locations with water
         locations.RemoveAll(gp => ObstacleCheck(gp));
 
@@ -613,14 +613,14 @@ public class GameManager : MonoBehaviour
         {
             if (unitGridPoint == ForestList[i])
             {
-                Debug.Log("Reduce the range of unit");
+                //Debug.Log("Reduce the range of unit");
                 newPiece.set_range(newPiece.rangeNum-1);
                 TriggerUnitSpecialEvent(newPiece.showMessage());
                 break;
             }
             else
             {
-                Debug.Log("Go back to default range");
+                //Debug.Log("Go back to default range");
                 newPiece.set_range(newPiece.defaultRange);
             }
         }
@@ -653,7 +653,7 @@ public class GameManager : MonoBehaviour
 
         if (piece.tag == "Water")
         {
-            Debug.Log("A Water Block found!");
+            //Debug.Log("A Water Block found!");
             return true;
         }
 
@@ -712,6 +712,7 @@ public class GameManager : MonoBehaviour
             }
             else
             {
+                Debug.Log("capture 1");
                 CapturePieceAt(movingPiece,gridPoint);
                 NextPlayer();
             }
