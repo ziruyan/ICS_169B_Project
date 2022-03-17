@@ -28,7 +28,7 @@ public class MainManager : MonoBehaviour
 
     public void playAIgame()
     {
-        SceneManager.LoadScene("vsAIScene", LoadSceneMode.Single);
+        SceneManager.LoadScene("vsAIScene1", LoadSceneMode.Single);
     }
 
     public void quitgame()

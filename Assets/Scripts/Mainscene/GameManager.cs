@@ -100,6 +100,10 @@ public class GameManager : MonoBehaviour
     Scene current_scene;
     string current_scene_name;
 
+    string sceneName;
+
+    public bool turn_ai;
+
 
     void Awake()
     {
@@ -152,6 +156,18 @@ public class GameManager : MonoBehaviour
         // Check the scene the game is currently in
         current_scene = SceneManager.GetActiveScene();
         current_scene_name = current_scene.name;
+
+        Scene m_Scene = SceneManager.GetActiveScene();
+        sceneName = m_Scene.name;
+
+        if (sceneName == "vsAIScene1")
+        {
+            turn_ai = true;
+        }
+        else
+        {
+            turn_ai = false;
+        }
     }
 
 	//创建所有棋子，绑定玩家，设置初始位置，调用模型
@@ -579,11 +595,13 @@ public class GameManager : MonoBehaviour
             {
                 if (newPiece.health != newPiece.maxHealth)
                 {
+                    Debug.Log("Debug 1");
                     newPiece.add_health(2);
                     TriggerUnitSpecialEvent("Unit stationed at the Town and 2 HP is recovered.");
                 }
                 else
                 {
+                    Debug.Log("Debug 2");
                     newPiece.recover_full_health();
                     TriggerUnitSpecialEvent("Unit stationed at the Town to heal and recover, HP +2.");
                     Debug.Log("The health is already full");
@@ -657,15 +675,17 @@ public class GameManager : MonoBehaviour
 
 		ShowWhoTurn();
 
-        if (randomInt <= 8)
-        {
-            TriggerRandomEvent(randomInt);
-        }
 
-
-        if (current_scene_name == "vsAIScene" && currentPlayer.name == "Blue")
+        if (turn_ai is true && currentPlayer.name == "Blue")
         {
             AiTurn();
+        }
+        else
+        {
+            if (randomInt <= 8)
+            {
+                TriggerRandomEvent(randomInt);
+            }
         }
     }
 
